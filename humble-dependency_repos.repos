@@ -1,8 +1,8 @@
 repositories:
   cascade_lifecycle:
     type: git
-    url: https://github.com/fmrico/cascade_lifecycle.git
-    version: humble-devel
+    url: https://github.com/mgonzs13/cascade_lifecycle
+    version: rolling
   popf:
     type: git
     url: https://github.com/fmrico/popf.git
