@@ -46,6 +46,7 @@ ExecutorClient::ExecutorClient()
 ExecutorClient::ExecutorClient(const std::string & node_name)
 {
   node_ = rclcpp::Node::make_shared(node_name);
+  exe.add_node(node_->get_node_base_interface());
 
   createActionClient();
 
@@ -180,8 +181,7 @@ ExecutorClient::on_new_goal_received(const plansys2_msgs::msg::Plan & plan)
 
   auto future_goal_handle = action_client_->async_send_goal(goal, send_goal_options);
 
-  if (rclcpp::spin_until_future_complete(
-      node_->get_node_base_interface(), future_goal_handle, 3s) !=
+  if (exe.spin_until_future_complete(future_goal_handle, 3s) !=
     rclcpp::FutureReturnCode::SUCCESS)
   {
     RCLCPP_ERROR(node_->get_logger(), "send_goal failed");
@@ -216,8 +216,7 @@ ExecutorClient::cancel_plan_execution()
 {
   if (should_cancel_goal()) {
     auto future_cancel = action_client_->async_cancel_goal(goal_handler_);
-    if (rclcpp::spin_until_future_complete(
-        node_->get_node_base_interface(), future_cancel, 3s) !=
+    if (exe.spin_until_future_complete(future_cancel, 3s) !=
       rclcpp::FutureReturnCode::SUCCESS)
     {
       RCLCPP_ERROR(
@@ -248,7 +247,7 @@ std::vector<plansys2_msgs::msg::Tree> ExecutorClient::getOrderedSubGoals()
 
   auto future_result = get_ordered_sub_goals_client_->async_send_request(request);
 
-  if (rclcpp::spin_until_future_complete(node_, future_result, std::chrono::seconds(1)) !=
+  if (exe.spin_until_future_complete(future_result, std::chrono::seconds(1)) !=
     rclcpp::FutureReturnCode::SUCCESS)
   {
     return ret;
@@ -284,7 +283,7 @@ std::optional<plansys2_msgs::msg::Plan> ExecutorClient::get_plan()
 
   auto future_result = get_plan_client_->async_send_request(request);
 
-  if (rclcpp::spin_until_future_complete(node_, future_result, std::chrono::seconds(1)) !=
+  if (exe.spin_until_future_complete(future_result, std::chrono::seconds(1)) !=
     rclcpp::FutureReturnCode::SUCCESS)
   {
     return {};
@@ -319,7 +318,7 @@ std::optional<plansys2_msgs::msg::Plan> ExecutorClient::get_remaining_plan()
 
   auto future_result = get_remaining_plan_client_->async_send_request(request);
 
-  if (rclcpp::spin_until_future_complete(node_, future_result, std::chrono::seconds(1)) !=
+  if (exe.spin_until_future_complete(future_result, std::chrono::seconds(1)) !=
     rclcpp::FutureReturnCode::SUCCESS)
   {
     return {};
