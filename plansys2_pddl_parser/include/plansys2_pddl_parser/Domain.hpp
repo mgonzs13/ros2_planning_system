@@ -14,6 +14,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 #include "plansys2_pddl_parser/And.hpp"
 #include "plansys2_pddl_parser/Derived.hpp"

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include <stdio.h>
+#include <iostream>
 #include <readline/readline.h>
 
 #include <readline/history.h>

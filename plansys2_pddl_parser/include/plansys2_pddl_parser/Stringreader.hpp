@@ -18,6 +18,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "plansys2_pddl_parser/TokenStruct.hpp"
 #include "plansys2_pddl_parser/Type.hpp"

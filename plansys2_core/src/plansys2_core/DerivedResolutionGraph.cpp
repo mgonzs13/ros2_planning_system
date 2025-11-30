@@ -15,6 +15,7 @@
 #include "plansys2_core/DerivedResolutionGraph.hpp"
 
 #include <fstream>
+#include <iostream>
 
 namespace plansys2
 {

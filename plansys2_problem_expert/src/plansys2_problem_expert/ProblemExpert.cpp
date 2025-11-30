@@ -22,6 +22,7 @@
 #include <memory>
 #include <set>
 #include <map>
+#include <iostream>
 
 #include "plansys2_core/Utils.hpp"
 #include "plansys2_pddl_parser/Domain.hpp"

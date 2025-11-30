@@ -17,6 +17,7 @@
 
 #include <memory>
 #include <string>
+#include <iostream>
 
 #include "plansys2_core/Action.hpp"
 #include "plansys2_core/Types.hpp"
