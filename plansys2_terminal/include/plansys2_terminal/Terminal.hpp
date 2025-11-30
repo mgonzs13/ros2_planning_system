@@ -102,6 +102,7 @@ protected:
   virtual void process_help(std::vector<std::string> & command, std::ostringstream & os);
 
 private:
+  rclcpp::experimental::executors::EventsExecutor exe;
   std::shared_ptr<plansys2::DomainExpertClient> domain_client_;
   std::shared_ptr<plansys2::ProblemExpertClient> problem_client_;
   std::shared_ptr<plansys2::PlannerClient> planner_client_;

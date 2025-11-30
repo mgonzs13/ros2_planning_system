@@ -165,6 +165,7 @@ private:
    */
   void createActionClient();
 
+  rclcpp::experimental::executors::EventsExecutor exe;
   rclcpp::Node::SharedPtr node_;
 
   rclcpp_action::Client<ExecutePlan>::SharedPtr action_client_;

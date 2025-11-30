@@ -223,6 +223,7 @@ Terminal::Terminal()
 : rclcpp::Node("terminal")
 {
   this->declare_parameter<std::string>("problem_file", "");
+  exe.add_node(this->get_node_base_interface());
 }
 
 void
@@ -879,7 +880,7 @@ Terminal::execute_plan(const plansys2_msgs::msg::Plan & plan)
 
     std::cout << std::flush;
 
-    rclcpp::spin_some(this->get_node_base_interface());
+    exe.spin_some();
     loop_rate.sleep();
   }
 
@@ -981,7 +982,7 @@ Terminal::process_check_actors(std::vector<std::string> & command, std::ostrings
 
   auto start = now();
   while (rclcpp::ok() && (now() - start).seconds() < 2.0) {
-    rclcpp::spin_some(shared_from_this());
+    exe.spin_some();
   }
 
   std::list<std::string> keys;

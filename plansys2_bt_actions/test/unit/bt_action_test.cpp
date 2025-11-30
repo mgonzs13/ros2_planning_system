@@ -126,16 +126,19 @@ protected:
 
 TEST_F(BTActionsTestCase, load_plugins)
 {
+  rclcpp::experimental::executors::EventsExecutor exe;
   auto node = rclcpp_lifecycle::LifecycleNode::make_shared("load_plugins_node");
   auto move_server_node = std::make_shared<MoveServer>();
   move_server_node->start_server();
+
+  exe.add_node(move_server_node->get_node_base_interface());
+  exe.add_node(node->get_node_base_interface());
 
   bool finish = false;
   std::thread t([&]() {
       rclcpp::Rate rate(100);
       while (!finish) {
-        rclcpp::spin_some(move_server_node);
-        rclcpp::spin_some(node->get_node_base_interface());
+        exe.spin_some();
         rate.sleep();
       }
     });
@@ -173,16 +176,19 @@ TEST_F(BTActionsTestCase, load_plugins)
 
 TEST_F(BTActionsTestCase, on_tick_failure)
 {
+  rclcpp::experimental::executors::EventsExecutor exe;
   auto node = rclcpp_lifecycle::LifecycleNode::make_shared("test_node");
   auto move_server_node = std::make_shared<MoveServer>();
   move_server_node->start_server();
+
+  exe.add_node(move_server_node->get_node_base_interface());
+  exe.add_node(node->get_node_base_interface());
 
   bool finished = false;
   std::thread t([&]() {
       rclcpp::Rate rate(100);
       while (!finished) {
-        rclcpp::spin_some(move_server_node);
-        rclcpp::spin_some(node->get_node_base_interface());
+        exe.spin_some();
         rate.sleep();
       }
     });
@@ -218,16 +224,19 @@ TEST_F(BTActionsTestCase, on_tick_failure)
 
 TEST_F(BTActionsTestCase, on_feedback_failure)
 {
+  rclcpp::experimental::executors::EventsExecutor exe;
   auto node = rclcpp_lifecycle::LifecycleNode::make_shared("test_node");
   auto move_server_node = std::make_shared<MoveServer>();
   move_server_node->start_server();
+
+  exe.add_node(move_server_node->get_node_base_interface());
+  exe.add_node(node->get_node_base_interface());
 
   bool finished = false;
   std::thread t([&]() {
       rclcpp::Rate rate(100);
       while (!finished) {
-        rclcpp::spin_some(move_server_node);
-        rclcpp::spin_some(node->get_node_base_interface());
+        exe.spin_some();
         rate.sleep();
       }
     });

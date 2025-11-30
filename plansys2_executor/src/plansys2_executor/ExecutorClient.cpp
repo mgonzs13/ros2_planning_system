@@ -32,6 +32,7 @@ using ExecutePlan = plansys2_msgs::action::ExecutePlan;
 ExecutorClient::ExecutorClient()
 {
   node_ = rclcpp::Node::make_shared("executor_client");
+  exe.add_node(node_->get_node_base_interface());
 
   createActionClient();
 
@@ -81,7 +82,7 @@ ExecutorClient::start_plan_execution(const plansys2_msgs::msg::Plan & plan)
 bool
 ExecutorClient::execute_and_check_plan()
 {
-  rclcpp::spin_some(node_);
+  exe.spin_some();
 
   if (!goal_result_available_) {
     return true;  // Plan not finished
@@ -203,7 +204,7 @@ ExecutorClient::should_cancel_goal()
     return false;
   }
 
-  rclcpp::spin_some(node_);
+  exe.spin_some();
   auto status = goal_handler_->get_status();
 
   return status == action_msgs::msg::GoalStatus::STATUS_ACCEPTED ||
