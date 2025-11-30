@@ -126,7 +126,7 @@ protected:
 
 TEST_F(BTActionsTestCase, load_plugins)
 {
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
   auto node = rclcpp_lifecycle::LifecycleNode::make_shared("load_plugins_node");
   auto move_server_node = std::make_shared<MoveServer>();
   move_server_node->start_server();
@@ -176,7 +176,7 @@ TEST_F(BTActionsTestCase, load_plugins)
 
 TEST_F(BTActionsTestCase, on_tick_failure)
 {
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
   auto node = rclcpp_lifecycle::LifecycleNode::make_shared("test_node");
   auto move_server_node = std::make_shared<MoveServer>();
   move_server_node->start_server();
@@ -224,7 +224,7 @@ TEST_F(BTActionsTestCase, on_tick_failure)
 
 TEST_F(BTActionsTestCase, on_feedback_failure)
 {
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
   auto node = rclcpp_lifecycle::LifecycleNode::make_shared("test_node");
   auto move_server_node = std::make_shared<MoveServer>();
   move_server_node->start_server();
@@ -291,7 +291,7 @@ TEST_F(BTActionsTestCase, bt_action)
 
   bt_action->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
   exe.add_node(bt_action->get_node_base_interface());
   exe.add_node(lc_node->get_node_base_interface());
 
@@ -330,7 +330,7 @@ TEST_F(BTActionsTestCase, bt_action_old_constructor)
 
   bt_action->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
   exe.add_node(bt_action->get_node_base_interface());
   exe.add_node(lc_node->get_node_base_interface());
 
@@ -370,7 +370,7 @@ TEST_F(BTActionsTestCase, cancel_bt_action)
 
   bt_action->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
   exe.add_node(bt_action->get_node_base_interface());
   exe.add_node(lc_node->get_node_base_interface());
 

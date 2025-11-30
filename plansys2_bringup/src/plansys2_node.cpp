@@ -32,7 +32,16 @@ int main(int argc, char ** argv)
 
   rclcpp::init(argc, argv);
 
+#if __has_include("rclcpp/version.h")
+#include "rclcpp/version.h"
+#if RCLCPP_VERSION_GTE(28, 1, 1)
   rclcpp::experimental::executors::EventsExecutor exe;
+#else
+  rclcpp::executors::SingleThreadedExecutor exe;
+#endif
+#else
+  rclcpp::executors::SingleThreadedExecutor exe;
+#endif
 
   auto main_node = rclcpp::Node::make_shared("plansys2");
   bool real_time = false;

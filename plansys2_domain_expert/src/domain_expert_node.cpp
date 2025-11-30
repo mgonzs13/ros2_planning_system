@@ -22,7 +22,16 @@ int main(int argc, char ** argv)
   rclcpp::init(argc, argv);
   auto node = std::make_shared<plansys2::DomainExpertNode>();
 
+#if __has_include("rclcpp/version.h")
+#include "rclcpp/version.h"
+#if RCLCPP_VERSION_GTE(28, 1, 1)
   rclcpp::experimental::executors::EventsExecutor exe;
+#else
+  rclcpp::executors::SingleThreadedExecutor exe;
+#endif
+#else
+  rclcpp::executors::SingleThreadedExecutor exe;
+#endif
   exe.add_node(node->get_node_base_interface());
   exe.spin();
   exe.remove_node(node->get_node_base_interface());

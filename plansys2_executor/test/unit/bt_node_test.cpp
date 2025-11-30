@@ -73,7 +73,7 @@ TEST(problem_expert, wait_overall_req_test)
   domain_node->set_parameter({"model_file", pkgpath + "/pddl/factory2.pddl"});
   problem_node->set_parameter({"model_file", pkgpath + "/pddl/factory2.pddl"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -186,7 +186,7 @@ TEST(problem_expert, wait_atstart_req_test)
   domain_node->set_parameter({"model_file", pkgpath + "/pddl/factory2.pddl"});
   problem_node->set_parameter({"model_file", pkgpath + "/pddl/factory2.pddl"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -301,7 +301,7 @@ TEST(problem_expert, wait_atend_req_test)
   domain_node->set_parameter({"model_file", pkgpath + "/pddl/factory2.pddl"});
   problem_node->set_parameter({"model_file", pkgpath + "/pddl/factory2.pddl"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -414,7 +414,7 @@ TEST(problem_expert, at_start_effect_test)
   domain_node->set_parameter({"model_file", pkgpath + "/pddl/factory2.pddl"});
   problem_node->set_parameter({"model_file", pkgpath + "/pddl/factory2.pddl"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -532,7 +532,7 @@ TEST(problem_expert, at_start_effect_retore_test)
   domain_node->set_parameter({"model_file", pkgpath + "/pddl/factory2.pddl"});
   problem_node->set_parameter({"model_file", pkgpath + "/pddl/factory2.pddl"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -652,7 +652,7 @@ TEST(problem_expert, at_end_effect_test)
   domain_node->set_parameter({"model_file", pkgpath + "/pddl/factory2.pddl"});
   problem_node->set_parameter({"model_file", pkgpath + "/pddl/factory2.pddl"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());

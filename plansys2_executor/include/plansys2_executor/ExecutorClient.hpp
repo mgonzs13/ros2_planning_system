@@ -165,7 +165,16 @@ private:
    */
   void createActionClient();
 
+#if __has_include("rclcpp/version.h")
+#include "rclcpp/version.h"
+#if RCLCPP_VERSION_GTE(28, 1, 1)
   rclcpp::experimental::executors::EventsExecutor exe;
+#else
+  rclcpp::executors::SingleThreadedExecutor exe;
+#endif
+#else
+  rclcpp::executors::SingleThreadedExecutor exe;
+#endif
   rclcpp::Node::SharedPtr node_;
 
   rclcpp_action::Client<ExecutePlan>::SharedPtr action_client_;

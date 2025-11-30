@@ -37,7 +37,16 @@ int main(int argc, char ** argv)
   manager_nodes["executor"] = std::make_shared<plansys2::LifecycleServiceClient>(
     "executor_lc_mngr", "executor");
 
+#if __has_include("rclcpp/version.h")
+#include "rclcpp/version.h"
+#if RCLCPP_VERSION_GTE(28, 1, 1)
   rclcpp::experimental::executors::EventsExecutor exe;
+#else
+  rclcpp::executors::SingleThreadedExecutor exe;
+#endif
+#else
+  rclcpp::executors::SingleThreadedExecutor exe;
+#endif
   for (auto & manager_node : manager_nodes) {
     manager_node.second->init();
     exe.add_node(manager_node.second);

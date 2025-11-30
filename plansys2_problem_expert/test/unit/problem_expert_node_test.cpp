@@ -52,7 +52,7 @@ TEST(problem_expert_node, addget_instances)
   domain_node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_ACTIVATE);
   problem_node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_ACTIVATE);
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -594,7 +594,7 @@ TEST(problem_expert_node, addget_goal_is_satisfied)
   domain_node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_ACTIVATE);
   problem_node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_ACTIVATE);
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());

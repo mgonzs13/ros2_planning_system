@@ -126,8 +126,19 @@ DomainExpertNode::on_configure(const rclcpp_lifecycle::State & state)
   auto model_files = tokenize(model_file, ":");
 
   if (validate_using_planner_node) {
+#if __has_include("rclcpp/version.h")
+#include "rclcpp/version.h"
+#if RCLCPP_VERSION_GTE(28, 1, 1)
+    auto qos = rclcpp::QoS(
+    rclcpp::QoSInitialization::from_rmw(rmw_qos_profile_services_default));
+#else
+    auto qos = rmw_qos_profile_services_default;
+#endif
+#else
+    auto qos = rmw_qos_profile_services_default;
+#endif
     validate_domain_client_ = create_client<plansys2_msgs::srv::ValidateDomain>(
-      "planner/validate_domain", rclcpp::ServicesQoS(), validate_domain_callback_group_);
+      "planner/validate_domain", qos, validate_domain_callback_group_);
     while (!validate_domain_client_->wait_for_service(std::chrono::seconds(3))) {
       RCLCPP_INFO_STREAM(
         get_logger(),

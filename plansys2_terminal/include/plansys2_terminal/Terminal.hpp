@@ -102,7 +102,16 @@ protected:
   virtual void process_help(std::vector<std::string> & command, std::ostringstream & os);
 
 private:
+#if __has_include("rclcpp/version.h")
+#include "rclcpp/version.h"
+#if RCLCPP_VERSION_GTE(28, 1, 1)
   rclcpp::experimental::executors::EventsExecutor exe;
+#else
+  rclcpp::executors::SingleThreadedExecutor exe;
+#endif
+#else
+  rclcpp::executors::SingleThreadedExecutor exe;
+#endif
   std::shared_ptr<plansys2::DomainExpertClient> domain_client_;
   std::shared_ptr<plansys2::ProblemExpertClient> problem_client_;
   std::shared_ptr<plansys2::PlannerClient> planner_client_;

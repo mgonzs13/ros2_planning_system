@@ -126,7 +126,7 @@ TEST(action_execution, protocol_basic)
   move_action_node->set_parameter({"action_name", "move"});
   move_action_node->set_parameter({"rate", 1.0});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(test_node);
   exe.add_node(test_lf_node->get_node_base_interface());
@@ -242,7 +242,7 @@ TEST(action_execution, protocol_cancelation)
   move_action_node->set_parameter({"action_name", "move"});
   move_action_node->set_parameter({"rate", 1.0});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(test_node);
   exe.add_node(test_lf_node->get_node_base_interface());

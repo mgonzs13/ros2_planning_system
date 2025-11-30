@@ -48,7 +48,7 @@ TEST(planner_expert, generate_plan_good)
   domain_node->set_parameter({"model_file", pkgpath + "/pddl/domain_simple.pddl"});
   problem_node->set_parameter({"model_file", pkgpath + "/pddl/domain_simple.pddl"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -144,7 +144,7 @@ TEST(planner_expert, generate_plan_with_args)
   planner_node->set_parameter({"POPF1.arguments", "-h -E -A"});
   planner_node->set_parameter({"POPF1.output_dir", "/tmp/POPF1"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -263,7 +263,7 @@ TEST(planner_expert, generate_plans)
   planner_node->set_parameter({"POPF3.output_dir", "/tmp/POPF3"});
 
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -385,7 +385,7 @@ TEST(planner_expert, generate_plans_stress)
   planner_node->set_parameter({"POPF3.output_dir", "/tmp/POPF3"});
 
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -484,7 +484,7 @@ TEST(planner_expert, generate_plan_with_domain_constants)
   domain_node->set_parameter({"model_file", pkgpath + "/pddl/domain_simple_constants.pddl"});
   problem_node->set_parameter({"model_file", pkgpath + "/pddl/domain_simple_constants.pddl"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());

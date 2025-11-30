@@ -68,7 +68,7 @@ TEST(problem_expert, wait_atstart_req_test)
   domain_node->set_parameter({"model_file", pkgpath + "/pddl/domain_charging.pddl"});
   problem_node->set_parameter({"model_file", pkgpath + "/pddl/domain_charging.pddl"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -191,7 +191,7 @@ TEST(problem_expert, apply_atstart_effect_test)
   domain_node->set_parameter({"model_file", pkgpath + "/pddl/domain_charging.pddl"});
   problem_node->set_parameter({"model_file", pkgpath + "/pddl/domain_charging.pddl"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -317,7 +317,7 @@ TEST(problem_expert, restore_atstart_effect_test)
   domain_node->set_parameter({"model_file", pkgpath + "/pddl/domain_charging.pddl"});
   problem_node->set_parameter({"model_file", pkgpath + "/pddl/domain_charging.pddl"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());
@@ -444,7 +444,7 @@ TEST(problem_expert, apply_atend_effect_test)
   domain_node->set_parameter({"model_file", pkgpath + "/pddl/domain_charging.pddl"});
   problem_node->set_parameter({"model_file", pkgpath + "/pddl/domain_charging.pddl"});
 
-  rclcpp::experimental::executors::EventsExecutor exe;
+  rclcpp::executors::SingleThreadedExecutor exe;
 
   exe.add_node(domain_node->get_node_base_interface());
   exe.add_node(problem_node->get_node_base_interface());

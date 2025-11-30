@@ -226,7 +226,16 @@ ComputeBT::computeBTCallback(
   domain_node_->set_parameter({"model_file", domain_filename});
   problem_node_->set_parameter({"model_file", domain_filename});
 
+#if __has_include("rclcpp/version.h")
+#include "rclcpp/version.h"
+#if RCLCPP_VERSION_GTE(28, 1, 1)
   rclcpp::experimental::executors::EventsExecutor exe;
+#else
+  rclcpp::executors::SingleThreadedExecutor exe;
+#endif
+#else
+  rclcpp::executors::SingleThreadedExecutor exe;
+#endif
 
   exe.add_node(domain_node_->get_node_base_interface());
   exe.add_node(problem_node_->get_node_base_interface());
