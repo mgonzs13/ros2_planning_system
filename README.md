@@ -29,9 +29,26 @@ This project is the result of several years of experience in the development of 
 
 We hope that this software helps to include planning in more Robotics projects, offering simple and powerful software to generate intelligent behaviors for robots.
 
+We want to invite you to contribute to this Open Source project !!
+
+**Visit the [Web Page](https://plansys2.github.io) for tutorials, videos and more!!**
+
+## Installation
+
+```shell
+cd ~/ros2_ws/src
+git clone https://github.com/mgonzs13/ros2_planning_system
+sudo apt-get install libfl-dev
+cd ~/ros2_ws
+vcs import src < src/ros2_planning_system/dependency_repos.repos
+colcon build
+```
+
+## Citation
+
 Please, cite us if you use PlanSys2 in your reseach:
 
-``` 
+```
 @INPROCEEDINGS
  {PlanSys2,
     author    = "Francisco Mart{\'{\i}}n and Jonatan Gin{\'{e}}s and Francisco J. Rodr{\'{i}}guez and Vicente Matell{\'{a}}n",
@@ -41,11 +58,3 @@ Please, cite us if you use PlanSys2 in your reseach:
     publisher = "{IEEE}"
 }
 ```
-
-We want to invite you to contribute to this Open Source project !!
-
-
-**Visit the [Web Page](https://plansys2.github.io) for tutorials, videos and more!!**
-
-
-<img src="plansys2_docs/plansys2_logo.png" alt="drawing" width="200"/>
